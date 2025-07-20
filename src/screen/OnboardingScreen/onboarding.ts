@@ -1,4 +1,6 @@
-const onboardingData = [
+import { IOnboarding } from "../../types/IOnboarding"
+
+const onboardingData:IOnboarding[] = [
     {
         id: '1',
         heading: 'Savor Every Bite',

@@ -8,6 +8,7 @@ import {
 } from 'react-native-safe-area-context';
 import BottomNavigation from './src/navigation/BottomNavigation/BottomNavigation';
 import Splash from './src/screen/SplashScreen/Splash';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 
 SplashScreen.preventAutoHideAsync();
@@ -58,9 +59,11 @@ export default function App() {
   }
 
   return (
-    <SafeAreaProvider style={styles.container} onLayout={onLayoutRootView}>
+    <GestureHandlerRootView style={styles.container}>
+    <SafeAreaProvider  onLayout={onLayoutRootView}>
       <BottomNavigation/>
     </SafeAreaProvider>
+    </GestureHandlerRootView>
   );
 }
 
