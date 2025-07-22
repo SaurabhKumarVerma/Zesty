@@ -1,22 +1,22 @@
-import { StyleSheet, Text, View } from "react-native";
-import React from "react";
+import { Animated, FlatList, StyleSheet, Text, View, useAnimatedValue } from "react-native";
+import React, { useRef, useState } from "react";
 import ZestyList from "../../base/ZestyList/ZestyList";
 import onboardingData from "./onboarding";
 import { IOnboarding } from "../../types/IOnboarding";
 import { LinearGradient } from "expo-linear-gradient";
 import { app_color } from "../../themes/color";
 import { SCREEN_WIDTH } from "../../constant/screen-dimension";
+import { ViewToken } from "@shopify/flash-list";
+import Pagination from "../../base/Pagination/Pagination";
+import NextButton from "../../base/Pagination/NextButton";
 
-const colr = {
-    0: 'red',
-    1: 'green',
-    2: 'yellow',
-    3: 'blue'
-}
 const CARD_WIDTH = SCREEN_WIDTH - 80
 const OnboardingScreen = () => {
+  const scrollX = useAnimatedValue(0)
+  const [currentIndex, setCurrentIndex] = useState<number>(0)
+  const slideRef = useRef(0)
+
   const renderItem = ({ item }: { item: IOnboarding }) => {
-    
     return (
       <View
         style={{
@@ -33,6 +33,14 @@ const OnboardingScreen = () => {
       </View>
     );
   };
+
+  const onViewableItemsChanged = useRef((visibleItem: any) => {
+    console.log('visibleItem?.changed[0]?.index', visibleItem?.changed[0]?.index);
+    
+    setCurrentIndex(visibleItem?.changed[0]?.index)
+  },).current
+
+  const viewConfig = useRef({viewAreaCoveragePercentThreshold: 50}).current
   return (
     <LinearGradient
       colors={app_color.app_gradient_color as any}
@@ -40,7 +48,7 @@ const OnboardingScreen = () => {
       end={{x: 1, y:-1}}
       start={{x: -1, y:-1}}
     >
-      <ZestyList
+      <ZestyList<IOnboarding>
         horizontal
         pagingEnabled
         data={onboardingData}
@@ -49,7 +57,21 @@ const OnboardingScreen = () => {
         estimatedItemSize={100}
         contentContainerStyle={{}}
         showsHorizontalScrollIndicator={false}
+        onScroll={Animated.event([{nativeEvent: {contentOffset:{x:scrollX}}}], {
+          useNativeDriver: false,
+
+        })}
+        onViewableItemsChanged={onViewableItemsChanged}
+        viewabilityConfig={viewConfig}
       />
+
+      <View style={{alignItems: 'center', marginVertical: 40}}>
+        <Pagination data={onboardingData  as IOnboarding[]} scrollX={scrollX}/>
+      </View>
+      <View style={{alignItems: 'center', marginVertical: 40}}>
+        <NextButton />
+      </View>
+      
     </LinearGradient>
   );
 };
@@ -63,8 +85,8 @@ const styles = StyleSheet.create({
     position: "absolute",
     // left: 20,
     // right: 20,
-    bottom: 200,
-    borderRadius: 16,
+    bottom: 0,
+    borderRadius: 60,
     alignSelf: 'center'
   },
 });
