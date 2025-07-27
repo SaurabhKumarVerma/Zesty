@@ -1,8 +1,25 @@
 export const app_color = {
-    app_gradient_color: ["#FF939B", "#EF2A39"],
+    // app_gradient_color: ["#FF939B", "#EF2A39"],
+    app_gradient_color: ['transparent',"#FE8C00", 'transparent',"#FF2E63" , 'transparent', "#FF6A00"],
     primary_button: "#EF2A39",
     secondary_button: "#3C2F2F",
     white: "#FFFFFF",
-    silver: "#C2C2C2"
+    silver: "#C2C2C2",
+    brick_red: "#B22222",
+    light_gray: "#F5F5F5",
+    sunset_orange: "#FE8C00",
+    error_android: "#B00020",
+    error_ios: "#FF3B30",
+    transparent: "transparent",
+    bluish_purple: "#4C4DDC",
+    cool_blue: "#F5F5FF",
+    blue_violet: "#DFE0F3",
+    persian_blue:"#3334CC",
+    teal_blue:"#085885",
+    lavender_blue: "#DBDBF8",
+    soft_gray: "#D6D6D6",
+    medium_neutral_gray: "#878787",
+    charcoal_black: "#101010",
+    medium_gray : "#878787"
 }
 

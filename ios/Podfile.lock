@@ -1,4 +1,28 @@
 PODS:
+  - BlurView (0.5.2):
+    - DoubleConversion
+    - glog
+    - hermes-engine
+    - RCT-Folly (= 2024.11.18.00)
+    - RCTRequired
+    - RCTTypeSafety
+    - React-Core
+    - React-debug
+    - React-Fabric
+    - React-featureflags
+    - React-graphics
+    - React-hermes
+    - React-ImageManager
+    - React-jsi
+    - React-NativeModulesApple
+    - React-RCTFabric
+    - React-renderercss
+    - React-rendererdebug
+    - React-utils
+    - ReactCodegen
+    - ReactCommon/turbomodule/bridging
+    - ReactCommon/turbomodule/core
+    - Yoga
   - boost (1.84.0)
   - DoubleConversion (1.1.6)
   - EASClient (0.14.4):
@@ -1774,7 +1798,7 @@ PODS:
     - SDWebImageSVGCoder (>= 1.7.0)
     - SwiftUIIntrospect (~> 1.0)
     - Yoga
-  - react-native-keyboard-controller (1.17.5):
+  - react-native-keyboard-controller (1.18.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -1789,7 +1813,7 @@ PODS:
     - React-hermes
     - React-ImageManager
     - React-jsi
-    - react-native-keyboard-controller/common (= 1.17.5)
+    - react-native-keyboard-controller/common (= 1.18.1)
     - React-NativeModulesApple
     - React-RCTFabric
     - React-renderercss
@@ -1799,7 +1823,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - react-native-keyboard-controller/common (1.17.5):
+  - react-native-keyboard-controller/common (1.18.1):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2249,7 +2273,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNGestureHandler (2.27.1):
+  - RNGestureHandler (2.27.2):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2274,7 +2298,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNReanimated (3.18.0):
+  - RNReanimated (3.19.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2297,10 +2321,10 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - RNReanimated/reanimated (= 3.18.0)
-    - RNReanimated/worklets (= 3.18.0)
+    - RNReanimated/reanimated (= 3.19.0)
+    - RNReanimated/worklets (= 3.19.0)
     - Yoga
-  - RNReanimated/reanimated (3.18.0):
+  - RNReanimated/reanimated (3.19.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2323,9 +2347,9 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - RNReanimated/reanimated/apple (= 3.18.0)
+    - RNReanimated/reanimated/apple (= 3.19.0)
     - Yoga
-  - RNReanimated/reanimated/apple (3.18.0):
+  - RNReanimated/reanimated/apple (3.19.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2349,7 +2373,7 @@ PODS:
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
     - Yoga
-  - RNReanimated/worklets (3.18.0):
+  - RNReanimated/worklets (3.19.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2372,9 +2396,9 @@ PODS:
     - ReactCodegen
     - ReactCommon/turbomodule/bridging
     - ReactCommon/turbomodule/core
-    - RNReanimated/worklets/apple (= 3.18.0)
+    - RNReanimated/worklets/apple (= 3.19.0)
     - Yoga
-  - RNReanimated/worklets/apple (3.18.0):
+  - RNReanimated/worklets/apple (3.19.0):
     - DoubleConversion
     - glog
     - hermes-engine
@@ -2514,6 +2538,7 @@ PODS:
   - Yoga (0.0.0)
 
 DEPENDENCIES:
+  - "BlurView (from `../node_modules/@danielsaraldi/react-native-blur-view`)"
   - boost (from `../node_modules/react-native/third-party-podspecs/boost.podspec`)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - EASClient (from `../node_modules/expo-eas-client/ios`)
@@ -2641,6 +2666,8 @@ SPEC REPOS:
     - SwiftUIIntrospect
 
 EXTERNAL SOURCES:
+  BlurView:
+    :path: "../node_modules/@danielsaraldi/react-native-blur-view"
   boost:
     :podspec: "../node_modules/react-native/third-party-podspecs/boost.podspec"
   DoubleConversion:
@@ -2854,6 +2881,7 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
+  BlurView: 15a8f7c671188bdf272f1dd0f555b04e71817412
   boost: 7e761d76ca2ce687f7cc98e698152abd03a18f90
   DoubleConversion: cb417026b2400c8f53ae97020b2be961b59470cb
   EASClient: 5944ca4aea2836e5ecc5158381f3d4eb43b30e56
@@ -2927,7 +2955,7 @@ SPEC CHECKSUMS:
   React-Mapbuffer: a83853bd80bb31a4451e64af91a86c02f7df4f80
   React-microtasksnativemodule: 964a2c1213bb39fa5cc8d5ee4f55846d67747f32
   react-native-bottom-tabs: c7dde6a6025c37c0e8f494c7dbd4d33453af8902
-  react-native-keyboard-controller: 627042ee5608096bdeb0e1187e25eac026512b5d
+  react-native-keyboard-controller: bf564ee7ea1a9b4681aa83989a06f3990b4291a1
   react-native-netinfo: f0a9899081c185db1de5bb2fdc1c88c202a059ac
   react-native-safe-area-context: 106c19bea39450152d5f77832adde6c1981c481a
   React-NativeModulesApple: d2b9bd7d55dfd864e56c76592777ad32e8ab1f3d
@@ -2963,8 +2991,8 @@ SPEC CHECKSUMS:
   ReactCommon: 3dbed0a44e9e5d7b77b0f35983633aa5d33c9694
   RNFBApp: d15dab17b5639fb7f95712d07c204912a534b8c6
   RNFlashList: 087339c41dbb8a02e42156ad11748752b9142672
-  RNGestureHandler: 557517e4f3f540dfbe136b8d8b43f48c7e785f35
-  RNReanimated: 2b314b18e28adf1b300f606eb0f205a1a6a643e1
+  RNGestureHandler: 1cbf58542113b17d78c029f1791141e04ab5abf0
+  RNReanimated: 5794e936ec892ebd4a0143cbcd5ff0e9ecb1573d
   RNScreens: 50d1d7399c3e38ca18bd019c97e4180ccf081c91
   RNSVG: 1fa61293cb54a97d8ee3b182d2fb60443edcdf69
   SDWebImage: f29024626962457f3470184232766516dee8dfea
@@ -2975,6 +3003,6 @@ SPEC CHECKSUMS:
   SwiftUIIntrospect: fee9aa07293ee280373a591e1824e8ddc869ba5d
   Yoga: bfcce202dba74007f8974ee9c5f903a9a286c445
 
-PODFILE CHECKSUM: b8f5a8bf9c979ee110003420f99dd9633651e743
+PODFILE CHECKSUM: 093fc335ec92755ec6ce1ad0171f1fc57fffb0d1
 
 COCOAPODS: 1.15.2
