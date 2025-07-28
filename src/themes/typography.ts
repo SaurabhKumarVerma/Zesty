@@ -1,12 +1,12 @@
-import { ETypography, ITypography } from "../types/type";
+import { ETypography, ITypography } from '../types/type';
 
 export const typography = {
-  bold: "../../assets/fonts/Inter-Bold.ttf",
-  light: "../../assets/fonts/Inter-Light.ttf",
-  medium: "../../assets/fonts/Inter-Medium.ttf",
-  regular: "../../assets/fonts/Inter-Regular.ttf",
-  semibold: "../../assets/fonts/Inter-SemiBold.ttf",
-  thin: "../../assets/fonts/Inter-Thin.ttf",
+  bold: '../../assets/fonts/Inter-Bold.ttf',
+  light: '../../assets/fonts/Inter-Light.ttf',
+  medium: '../../assets/fonts/Inter-Medium.ttf',
+  regular: '../../assets/fonts/Inter-Regular.ttf',
+  semibold: '../../assets/fonts/Inter-SemiBold.ttf',
+  thin: '../../assets/fonts/Inter-Thin.ttf',
 };
 
 const font = {
@@ -21,6 +21,6 @@ const font = {
 };
 
 export const app_fonts = {
-    font,
-     primary: font.inter,
-}
+  font,
+  primary: font.inter,
+};

@@ -1,12 +1,10 @@
-import React, {
-  ComponentType,
-  forwardRef,
-  Ref,
-  useImperativeHandle,
-  useRef,
-} from 'react';
+import { TextProps, ZestyText } from '@base/ZestyText/ZestyText';
+import { app_color } from '@themes/color';
+import { spacing } from '@themes/spacing';
+import { typography } from '@themes/typography';
+import React, { ComponentType, forwardRef, Ref, useImperativeHandle, useRef } from 'react';
 import {
-    Platform,
+  Platform,
   StyleProp,
   TextInput,
   TextInputProps,
@@ -15,10 +13,6 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
-import { TextProps, ZestyText } from '../ZestyText/ZestyText';
-import { app_color } from '../../themes/color';
-import { spacing } from '../../themes/spacing';
-import { typography } from '../../themes/typography';
 
 export interface TextFieldAccessoryProps {
   style: StyleProp<any>;
@@ -62,7 +56,7 @@ export const ZestyTextInput = forwardRef(function TextField(
 
   const disabled = TextInputProps.editable === false || status === 'disabled';
 
-  const placeholderContent =  placeholder;
+  const placeholderContent = placeholder;
 
   const $containerStyles = [$containerStyleOverride];
 
@@ -70,23 +64,27 @@ export const ZestyTextInput = forwardRef(function TextField(
 
   const $inputWrapperStyles = [
     $inputWrapperStyle,
-    status === 'error' && {borderColor: Platform.OS =='android'? app_color.error_android : app_color.error_ios},
-    TextInputProps.multiline && {minHeight: 112},
-    LeftAccessory && {paddingStart: 0},
-    RightAccessory && {paddingEnd: 0},
+    status === 'error' && {
+      borderColor: Platform.OS == 'android' ? app_color.error_android : app_color.error_ios,
+    },
+    TextInputProps.multiline && { minHeight: 112 },
+    LeftAccessory && { paddingStart: 0 },
+    RightAccessory && { paddingEnd: 0 },
     $inputWrapperStyleOverride,
   ];
 
   const $inputStyles = [
     $inputStyle,
-    disabled && {color: app_color.silver},
-    TextInputProps.multiline && {height: 'auto'},
+    disabled && { color: app_color.silver },
+    TextInputProps.multiline && { height: 'auto' },
     $inputStyleOverride,
   ];
 
   const $helperStyles = [
     $helperStyle,
-    status === 'error' && {color: Platform.OS =='android'? app_color.error_android : app_color.error_ios},
+    status === 'error' && {
+      color: Platform.OS == 'android' ? app_color.error_android : app_color.error_ios,
+    },
     HelperTextProps?.style,
   ];
 
@@ -105,14 +103,10 @@ export const ZestyTextInput = forwardRef(function TextField(
       activeOpacity={1}
       style={$containerStyles}
       onPress={focusInput}
-      accessibilityState={{disabled}}>
-      {!!(label) && (
-        <ZestyText
-          preset="formLabel"
-          text={label}
-          {...LabelTextProps}
-          style={$labelStyles}
-        />
+      accessibilityState={{ disabled }}
+    >
+      {!!label && (
+        <ZestyText preset="formLabel" text={label} {...LabelTextProps} style={$labelStyles} />
       )}
 
       <View style={$inputWrapperStyles}>
@@ -146,13 +140,8 @@ export const ZestyTextInput = forwardRef(function TextField(
         )}
       </View>
 
-      {!!(helper) && (
-        <ZestyText
-          preset="formHelper"
-          text={helper}
-          {...HelperTextProps}
-          style={$helperStyles}
-        />
+      {!!helper && (
+        <ZestyText preset="formHelper" text={helper} {...HelperTextProps} style={$helperStyles} />
       )}
     </TouchableOpacity>
   );

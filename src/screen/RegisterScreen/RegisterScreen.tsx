@@ -1,8 +1,8 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
-import React from "react";
-import Register from "../../component/Register/Register";
-import { spacing } from "../../themes/spacing";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { ScrollView, StyleSheet } from 'react-native';
+import React from 'react';
+import Register from '../../component/Register/Register';
+import { spacing } from '../../themes/spacing';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const RegisterScreen = () => {
   const inset = useSafeAreaInsets();

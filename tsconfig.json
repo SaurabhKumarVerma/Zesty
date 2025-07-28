@@ -1,6 +1,40 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
-  }
+    "target": "ESNext",
+    "module": "NodeNext",
+    "lib": ["ESNext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "moduleResolution": "nodenext",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-native",
+    "baseUrl": "src",
+    "paths": {
+      "@component/*": ["component/*"],
+      "@screen/*": ["screen/*"],
+      "@store/*": ["store/*"],
+      "@types/*": ["types/*"],
+      "@base/*": ["base/*"],
+      "@constant/*": ["constant/*"],
+      "@contexts/*": ["contexts/*"],
+      "@hook/*": ["hook/*"],
+      "@interface/*": ["interface/*"],
+      "@model/*": ["model/*"],
+      "@navigation/*": ["navigation/*"],
+      "@services/*": ["services/*"],
+      "@themes/*": ["themes/*"],
+      "@utils/*": ["utils/*"],
+      "@apollo/*": ["apollo/*"]
+    }
+  },
+
+  "include": ["src"],
+  "exclude": ["node_modules", "babel.config.js", "metro.config.js"]
 }

@@ -1,28 +1,23 @@
-import { Pressable, StyleSheet, Text } from "react-native";
-import React, {
-  JSXElementConstructor,
-  ReactNode,
-  ReactSVGElement,
-  useEffect,
-} from "react";
+import { Pressable, StyleSheet, Text } from 'react-native';
+import React, { JSXElementConstructor, ReactNode, ReactSVGElement, useEffect } from 'react';
 import Animated, {
   FadeInDown,
   interpolateColor,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
-} from "react-native-reanimated";
-import { app_color } from "../../themes/color";
-import { SCREEN_WIDTH } from "../../constant/screen-dimension";
-import LottieView from "lottie-react-native";
+} from 'react-native-reanimated';
+import LottieView from 'lottie-react-native';
+import { SCREEN_WIDTH } from '@constant/screen-dimension';
 import {
   BORDER_BUTTON_VALUE_LOADING,
   DURATION,
   LOTTIE_BUTTON_VALUE,
   LOTTIE_BUTTON_VALUE_LOADING,
-} from "../../constant/constant";
-import { debounce } from "../../utils/debounce";
-import { ZestyText } from "../ZestyText/ZestyText";
+} from '@constant/constant';
+import { app_color } from '@themes/color';
+import { debounce } from '@utils/debounce';
+import { ZestyText } from '@base/ZestyText/ZestyText';
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 const AnimatedLottieView = Animated.createAnimatedComponent(LottieView);
@@ -30,13 +25,9 @@ const AnimatedLottieView = Animated.createAnimatedComponent(LottieView);
 interface IZestyButton {
   isLoading: boolean;
   ctaText: string;
-  icon?:
-    | React.ElementType
-    | ReactNode
-    | ReactSVGElement
-    | JSXElementConstructor<any>;
+  icon?: React.ElementType | ReactNode | ReactSVGElement | JSXElementConstructor<any>;
   onPress: () => void;
-  width?: number
+  width?: number;
 }
 
 const ZestyButton = (props: IZestyButton) => {
@@ -75,13 +66,13 @@ const ZestyButton = (props: IZestyButton) => {
   const animatedStyleBackground = useAnimatedStyle(() => {
     const backgroundColor = interpolateColor(
       colorProgress.value,
-      [0,1],
-      [app_color.sunset_orange, app_color.soft_gray]
-    )
+      [0, 1],
+      [app_color.sunset_orange, app_color.soft_gray],
+    );
     return {
-      backgroundColor: backgroundColor
-    }
-  })
+      backgroundColor: backgroundColor,
+    };
+  });
 
   const animatedStyle = useAnimatedStyle(() => {
     return {
@@ -106,28 +97,25 @@ const ZestyButton = (props: IZestyButton) => {
     <>
       <AnimatedPressable
         disabled={props.isLoading ? true : false}
-        style={[
-          styles.container,
-          animatedStyle,
-          animatedBorder,
-          animatedStyleBackground,
-        ]}
+        style={[styles.container, animatedStyle, animatedBorder, animatedStyleBackground]}
         onPress={debounce(props.onPress, 500)}
       >
         {!props.isLoading ? (
           <Animated.View
-            style={{ alignItems: "center", flexDirection: "row" }}
+            style={{ alignItems: 'center', flexDirection: 'row' }}
             entering={FadeInDown}
           >
             {props.icon ? <>{props.icon}</> : null}
-            <ZestyText preset="semiBold" style={styles.ctaStyle} >{props.ctaText}</ZestyText>
+            <ZestyText preset="semiBold" style={styles.ctaStyle}>
+              {props.ctaText}
+            </ZestyText>
           </Animated.View>
         ) : null}
         {props.isLoading ? (
           <AnimatedLottieView
             entering={FadeInDown}
             autoPlay
-            source={require("../../../assets/lottie/loading.json")}
+            source={require('../../../assets/lottie/loading.json')}
             style={[styles.loadingStyle, animatedLottieHeight]}
           />
         ) : null}
@@ -140,19 +128,20 @@ export default ZestyButton;
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
-    alignSelf: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    alignSelf: 'center',
+    justifyContent: 'center',
     height: 60,
     overflow: 'hidden',
     borderRadius: 50,
     maxWidth: '100%',
   },
   loadingStyle: {
-    alignSelf: "center", overflow: 'hidden',
+    alignSelf: 'center',
+    overflow: 'hidden',
     // paddingLeft: 30,
   },
   ctaStyle: {
-    color: app_color.white
-  }
+    color: app_color.white,
+  },
 });

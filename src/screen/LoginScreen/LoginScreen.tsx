@@ -1,8 +1,8 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
-import React from "react";
-import Login from "../../component/Login/Login";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { spacing } from "../../themes/spacing";
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import Login from '../../component/Login/Login';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { spacing } from '../../themes/spacing';
 
 const LoginScreen = () => {
   const inset = useSafeAreaInsets();

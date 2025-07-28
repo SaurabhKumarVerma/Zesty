@@ -1,5 +1,5 @@
 export interface IOnboarding {
-    id: string;
-    heading: string;
-    description: string
+  id: string;
+  heading: string;
+  description: string;
 }

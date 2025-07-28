@@ -6,20 +6,20 @@ import {
   Text,
   View,
   useAnimatedValue,
-} from "react-native";
-import React, { useRef, useState } from "react";
-import onboardingData from "./onboarding";
-import { IOnboarding } from "../../types/IOnboarding";
-import { LinearGradient } from "expo-linear-gradient";
-import { app_color } from "../../themes/color";
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from "../../constant/screen-dimension";
-import Pagination from "../../base/Pagination/Pagination";
-import NextButton from "../../base/Pagination/NextButton";
-import ZestyImage from "../../base/ZestyImage/ZestyImage";
-import { app_images } from "../../../assets";
-import ZestyShimmer from "../../base/ZestyShimmer/ZestyShimmer";
-import { BlurView } from "@danielsaraldi/react-native-blur-view";
-import { ZestyText } from "../../base/ZestyText/ZestyText";
+} from 'react-native';
+import React, { useRef, useState } from 'react';
+import onboardingData from './onboarding';
+import { IOnboarding } from '../../types/IOnboarding';
+import { LinearGradient } from 'expo-linear-gradient';
+import { app_color } from '../../themes/color';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../constant/screen-dimension';
+import Pagination from '../../base/Pagination/Pagination';
+import NextButton from '../../base/Pagination/NextButton';
+import ZestyImage from '../../base/ZestyImage/ZestyImage';
+import { app_images } from '../../../assets';
+import ZestyShimmer from '../../base/ZestyShimmer/ZestyShimmer';
+import { BlurView } from '@danielsaraldi/react-native-blur-view';
+import { ZestyText } from '../../base/ZestyText/ZestyText';
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
@@ -41,9 +41,9 @@ const OnboardingScreen = () => {
         }}
       >
         <ZestyText
-        preset="bold"
+          preset="bold"
           style={{
-            textAlign: "center",
+            textAlign: 'center',
             // lineHeight: 4.42,
             fontSize: 30,
             paddingVertical: 30,
@@ -53,9 +53,9 @@ const OnboardingScreen = () => {
           {item.heading}
         </ZestyText>
         <ZestyText
-        preset="medium"
+          preset="medium"
           style={{
-            textAlign: "center",
+            textAlign: 'center',
             marginTop: 14,
             color: app_color.white,
           }}
@@ -87,7 +87,6 @@ const OnboardingScreen = () => {
         style={{ width: SCREEN_WIDTH, height: SCREEN_HEIGHT }}
       />
 
-
       <LinearGradient
         colors={app_color.app_gradient_color as any}
         style={styles.container}
@@ -102,22 +101,16 @@ const OnboardingScreen = () => {
           keyExtractor={(item) => item.id}
           contentContainerStyle={{}}
           showsHorizontalScrollIndicator={false}
-          onScroll={Animated.event(
-            [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-            {
-              useNativeDriver: false,
-            }
-          )}
+          onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }], {
+            useNativeDriver: false,
+          })}
           onViewableItemsChanged={onViewableItemsChanged}
           viewabilityConfig={viewConfig}
           ref={slideRef}
         />
 
-        <View style={{ alignItems: "center", marginVertical: 30 }}>
-          <Pagination
-            data={onboardingData as IOnboarding[]}
-            scrollX={scrollX}
-          />
+        <View style={{ alignItems: 'center', marginVertical: 30 }}>
+          <Pagination data={onboardingData as IOnboarding[]} scrollX={scrollX} />
         </View>
         {/* <View style={{alignItems: 'center', marginVertical: 30}}>
         <NextButton scrollTo={scrollTo} percentage={(currentIndex + 1) * (100 / onboardingData.length)} />
@@ -146,24 +139,24 @@ const styles = StyleSheet.create({
   container: {
     width: CARD_WIDTH,
     flex: 1,
-    position: "absolute",
+    position: 'absolute',
     // left: 20,
     // right: 20,
     bottom: 50,
     borderRadius: 60,
-    alignSelf: "center",
+    alignSelf: 'center',
   },
   container2: {
-    position: "absolute",
+    position: 'absolute',
 
-    width: "100%",
+    width: '100%',
     aspectRatio: 1,
     zIndex: -1,
   },
 
   blurView: {
-    width: "100%",
+    width: '100%',
     flex: 1,
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
   },
 });

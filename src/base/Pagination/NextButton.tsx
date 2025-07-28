@@ -1,12 +1,12 @@
-import { Pressable, StyleSheet, View, Animated, useAnimatedValue } from "react-native";
-import React, { useEffect, useRef } from "react";
-import Svg, { Circle, G } from "react-native-svg";
+import { Pressable, StyleSheet, View, Animated, useAnimatedValue } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import Svg, { Circle, G } from 'react-native-svg';
 import AntDesign from '@expo/vector-icons/AntDesign';
-import { app_color } from "../../themes/color";
+import { app_color } from '../../themes/color';
 
 interface INextButton {
   percentage: number;
-  scrollTo: () => void
+  scrollTo: () => void;
 }
 
 const NextButton = (props: INextButton) => {
@@ -15,42 +15,41 @@ const NextButton = (props: INextButton) => {
   const center = size / 2;
   const radius = size / 2 - strokeWidth / 2;
   const circumference = 2 * Math.PI * radius;
-  const progressAnimation = useAnimatedValue(0)
-  const progressref = useRef<Svg>(null)
+  const progressAnimation = useAnimatedValue(0);
+  const progressref = useRef<Svg>(null);
 
   const animation = (toValue: any) => {
     return Animated.timing(progressAnimation, {
       toValue,
       duration: 250,
-      useNativeDriver: true
-    }).start()
-  }
+      useNativeDriver: true,
+    }).start();
+  };
 
   useEffect(() => {
-    animation(props.percentage)
-  },[props.percentage])
+    animation(props.percentage);
+  }, [props.percentage]);
 
   useEffect(() => {
     progressAnimation.addListener((value) => {
-      
-      const strokeDashoffset = circumference - (circumference * value.value ) / 100
-      if(progressref?.current){
+      const strokeDashoffset = circumference - (circumference * value.value) / 100;
+      if (progressref?.current) {
         progressref?.current?.setNativeProps({
-          strokeDashoffset
-        })
+          strokeDashoffset,
+        });
       }
-    })
+    });
 
     return () => {
-      progressAnimation.removeAllListeners()
-    }
-  },[])
+      progressAnimation.removeAllListeners();
+    };
+  }, []);
   return (
     <View style={styles.container}>
       <Svg width={size} height={size}>
         <G rotation="-90" origin={center}>
           <Circle
-            stroke={"#F5F5F5"}
+            stroke={'#F5F5F5'}
             cx={center}
             cy={center}
             r={radius}
@@ -58,7 +57,7 @@ const NextButton = (props: INextButton) => {
             fill="none"
           />
           <Circle
-          ref={progressref}
+            ref={progressref}
             stroke={app_color.brick_red}
             cx={center}
             cy={center}
@@ -82,11 +81,11 @@ export default NextButton;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   nextButton: {
     position: 'absolute',
-    alignSelf: 'center'
-  }
+    alignSelf: 'center',
+  },
 });

@@ -1,5 +1,5 @@
-import Icon from "../../themes/customIcon"
-import { IIcon } from "../../types/type"
+import Icon from '../../themes/customIcon';
+import { IIcon } from '../../types/type';
 
 const ZestyIcon = (props: IIcon) => {
   return (
@@ -9,7 +9,7 @@ const ZestyIcon = (props: IIcon) => {
       size={props.size || 12}
       style={props.style || {}}
     />
-  )
-}
+  );
+};
 
-export default ZestyIcon
+export default ZestyIcon;
