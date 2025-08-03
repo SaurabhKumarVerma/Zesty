@@ -1,16 +1,24 @@
 import { IAuthenticationModel } from '@model/IAuthenticationModel';
-import { makeAutoObservable, observable } from 'mobx';
+import { action, makeAutoObservable, observable } from 'mobx';
 import { RootStore } from './RootStore';
+import { LoginMutation } from 'graphql/generated/graphql';
+import { WithoutTypename } from '@utils/__typenameOmit';
+import { navigate } from '@navigation/RootNavigation';
 
 export default class UserStore implements IAuthenticationModel {
-  user: any = null;
-  @observable user_email: string|undefined = undefined 
-  @observable user_password: string|undefined = undefined 
-  @observable access_token: string|undefined = undefined 
-  @observable refresh_token: string|undefined = undefined
+  @observable user: WithoutTypename<LoginMutation['login']> | undefined = undefined
 
   constructor(private rootStore: RootStore) {
     makeAutoObservable(this);
+  }
+
+
+  @action
+  getUserData(data: WithoutTypename<LoginMutation['login']>) {
+    if(data.ok){
+    this.user = data
+    navigate('Home')
+    }
   }
 
   onLogin(user: any) {
@@ -18,6 +26,6 @@ export default class UserStore implements IAuthenticationModel {
   }
 
   onLogout() {
-    this.user = null;
+    this.user = undefined;
   }
 }

@@ -7,8 +7,12 @@ import { ZestyText } from '@base/ZestyText/ZestyText';
 import { app_color } from '@themes/color';
 import { spacing } from '@themes/spacing';
 import ZestyButton from '@base/ZestyButton/ZestyButton';
+import { ESCREEN_NAME } from '@navigation/NavigationTypes/screenName';
+import { replace } from '@navigation/RootNavigation';
 
 const Login = () => {
+  
+
   const showEye = () => {
     return (
       <View style={{ alignSelf: 'center', marginRight: 20 }}>
@@ -16,6 +20,10 @@ const Login = () => {
       </View>
     );
   };
+
+  const navigateToRegister = () => {
+    replace(ESCREEN_NAME.REGISTER_SCREEN)
+  }
 
   return (
     <View style={{}}>
@@ -82,13 +90,14 @@ const Login = () => {
         <Google style={{ width: 30, height: 30 }} />
       </Pressable>
 
-      <View
+      <Pressable
         style={{
           flexDirection: 'row',
           marginTop: spacing.xl,
           alignItems: 'center',
           justifyContent: 'center',
         }}
+        onPress={navigateToRegister}
       >
         <ZestyText
           text="Don't have an account?"
@@ -96,7 +105,7 @@ const Login = () => {
           style={{ color: app_color.charcoal_black }}
         />
         <ZestyText text=" Register" preset="medium" style={{ color: app_color.sunset_orange }} />
-      </View>
+      </Pressable>
     </View>
   );
 };

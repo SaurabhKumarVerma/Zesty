@@ -3,7 +3,6 @@ import {
   FlatList,
   Pressable,
   StyleSheet,
-  Text,
   View,
   useAnimatedValue,
 } from 'react-native';
@@ -14,12 +13,14 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { app_color } from '../../themes/color';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../../constant/screen-dimension';
 import Pagination from '../../base/Pagination/Pagination';
-import NextButton from '../../base/Pagination/NextButton';
 import ZestyImage from '../../base/ZestyImage/ZestyImage';
 import { app_images } from '../../../assets';
-import ZestyShimmer from '../../base/ZestyShimmer/ZestyShimmer';
 import { BlurView } from '@danielsaraldi/react-native-blur-view';
 import { ZestyText } from '../../base/ZestyText/ZestyText';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import ZestyButton from '@base/ZestyButton/ZestyButton';
+import { ESCREEN_NAME } from '@navigation/NavigationTypes/screenName';
+import { replace } from '@navigation/RootNavigation';
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 const AnimatedBlurView = Animated.createAnimatedComponent(BlurView);
@@ -29,12 +30,13 @@ const OnboardingScreen = () => {
   const scrollX = useAnimatedValue(0);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const slideRef = useRef<any>(0);
+  const inset = useSafeAreaInsets()
 
   const renderItem = ({ item }: { item: IOnboarding }) => {
     return (
       <View
         style={{
-          paddingVertical: 50,
+          paddingVertical: 30,
           width: CARD_WIDTH,
           flex: 1,
           paddingHorizontal: 30,
@@ -80,12 +82,20 @@ const OnboardingScreen = () => {
   }).current;
 
   const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50 }).current;
+
+  const navigateToLogin = () => {
+    replace(ESCREEN_NAME.LOGIN_SCREEN)
+  }
   return (
     <>
       <ZestyImage
         source={app_images.onboardingImageBackground}
         style={{ width: SCREEN_WIDTH, height: SCREEN_HEIGHT }}
       />
+
+      <View style={{position: 'absolute', top: inset.top, alignSelf: 'flex-end', marginRight: 30, width: '20%'}}>
+        <ZestyButton ctaText='Skip' isLoading={false} onPress={navigateToLogin} />
+      </View>
 
       <LinearGradient
         colors={app_color.app_gradient_color as any}

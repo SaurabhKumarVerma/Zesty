@@ -10,6 +10,9 @@ import ZestyButton from '../../base/ZestyButton/ZestyButton';
 import Google from '../../../assets/icons/google.svg';
 import { useRegisterMutation } from '@services/graphql/queries/useRegisterMutation';
 import { UserRole } from 'graphql/generated/graphql';
+import { ESCREEN_NAME } from '@navigation/NavigationTypes/screenName';
+import { replace } from '@navigation/RootNavigation';
+import Toast from 'react-native-toast-message';
 
 const offset = { closed: 0, opened: 20 };
 
@@ -20,21 +23,40 @@ const Register = () => {
 
   const registerMutation = useRegisterMutation();
 
+  const navigateToRegister = () => {
+    replace(ESCREEN_NAME.LOGIN_SCREEN);
+  };
+
   const handleRegister = async () => {
+    // if (!email.length || !password.length) {
+    //   Toast.show({
+    //     position: 'bottom',
+    //     type: 'error',
+    //     props: 'Enter Email or Password',
+    //   });
+
+    //   return;
+    // }
     try {
       const result = await registerMutation.mutateAsync({
         input: { email, password, role: UserRole.Client },
       });
 
       if (result.createAccount.ok) {
-        Alert.alert('Success', 'Account created!');
+        replace(ESCREEN_NAME.LOGIN_SCREEN);
       } else {
-        Alert.alert('Error', result.createAccount.error || 'Unknown error');
+        Toast.show({
+          position: 'bottom',
+          type: 'error',
+          props: result.createAccount.error || 'Unknown error',
+        });
       }
     } catch (err: any) {
-      console.log('Registration Failed', registerMutation.error);
-      
-      Alert.alert('Registration Failed', err.message?.response);
+      Toast.show({
+        position: 'bottom',
+        type: 'error',
+        props: registerMutation.error || 'Unknown error',
+      });
     }
   };
 
@@ -170,13 +192,14 @@ const Register = () => {
         <Google style={{ width: 30, height: 30 }} />
       </Pressable>
 
-      <View
+      <Pressable
         style={{
           flexDirection: 'row',
           marginTop: spacing.xl,
           alignItems: 'center',
           justifyContent: 'center',
         }}
+        onPress={navigateToRegister}
       >
         <ZestyText
           text="Have an account?"
@@ -184,7 +207,7 @@ const Register = () => {
           style={{ color: app_color.charcoal_black }}
         />
         <ZestyText text=" Sign In" preset="medium" style={{ color: app_color.sunset_orange }} />
-      </View>
+      </Pressable>
     </View>
   );
 };
