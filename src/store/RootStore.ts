@@ -1,18 +1,21 @@
 import { QueryClient } from '@tanstack/react-query';
 import { IAuthenticationModel } from '../model/IAuthenticationModel';
 import UserStore from './UserStore';
+import RegistrationStore from './RegistrationStore';
 
 export class RootStore {
   userStore: UserStore;
   queryClient: QueryClient;
+  registrationStore: RegistrationStore
 
-  private lifecycleStores: IAuthenticationModel[];
+  private lifecycleStores: any[];
 
   constructor() {
     this.userStore = new UserStore(this);
     this.queryClient = new QueryClient();
+    this.registrationStore = new RegistrationStore(this)
 
-    this.lifecycleStores = [this.userStore];
+    this.lifecycleStores = [this.userStore, this.registrationStore];
   }
 
   onLogin(user: any) {

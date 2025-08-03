@@ -9,7 +9,8 @@
     "web": "expo start --web",
     "lint": "eslint . --ext .ts,.tsx",
     "lint:fix": "eslint . --ext .ts,.tsx --fix",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "codegen": "graphql-codegen --config codegen.yaml"
   },
   "dependencies": {
     "@apollo/client": "^3.13.8",
@@ -52,6 +53,7 @@
     "install": "^0.13.0",
     "lottie-react-native": "^7.2.4",
     "mobx": "^6.13.7",
+    "mobx-react": "^9.2.0",
     "prettier": "^3.6.2",
     "react": "19.0.0",
     "react-native": "0.79.5",
@@ -67,7 +69,11 @@
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
-    "@graphql-codegen/cli": "^5.0.7",
+    "@graphql-codegen/cli": "5.0.7",
+    "@graphql-codegen/client-preset": "4.8.3",
+    "@graphql-codegen/typed-document-node": "^5.1.2",
+    "@graphql-codegen/typescript": "^4.1.6",
+    "@graphql-codegen/typescript-operations": "^4.6.1",
     "@tanstack/eslint-plugin-query": "^5.81.2",
     "@types/react": "^19.1.8",
     "babel-plugin-module-resolver": "^5.0.2",

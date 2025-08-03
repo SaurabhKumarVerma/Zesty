@@ -67,7 +67,7 @@ const ZestyButton = (props: IZestyButton) => {
     const backgroundColor = interpolateColor(
       colorProgress.value,
       [0, 1],
-      [app_color.sunset_orange, app_color.soft_gray],
+      [app_color.sunset_orange, app_color.sunset_orange],
     );
     return {
       backgroundColor: backgroundColor,

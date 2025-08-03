@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, View } from 'react-native';
+import { ActivityIndicator, Alert, Pressable, StyleSheet, View } from 'react-native';
 import React, { useState } from 'react';
 import { ZestyText } from '../../base/ZestyText/ZestyText';
 import { app_color } from '../../themes/color';
@@ -8,17 +8,36 @@ import Feather from '@expo/vector-icons/Feather';
 import Checkbox from 'expo-checkbox';
 import ZestyButton from '../../base/ZestyButton/ZestyButton';
 import Google from '../../../assets/icons/google.svg';
-import { useKeyboardAnimation } from 'react-native-keyboard-controller';
+import { useRegisterMutation } from '@services/graphql/queries/useRegisterMutation';
+import { UserRole } from 'graphql/generated/graphql';
 
 const offset = { closed: 0, opened: 20 };
 
 const Register = () => {
   const [isChecked, setChecked] = useState(true);
-  const { height, progress } = useKeyboardAnimation();
-  const scale = progress.interpolate({
-    inputRange: [0, 1],
-    outputRange: [1, 2],
-  });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const registerMutation = useRegisterMutation();
+
+  const handleRegister = async () => {
+    try {
+      const result = await registerMutation.mutateAsync({
+        input: { email, password, role: UserRole.Client },
+      });
+
+      if (result.createAccount.ok) {
+        Alert.alert('Success', 'Account created!');
+      } else {
+        Alert.alert('Error', result.createAccount.error || 'Unknown error');
+      }
+    } catch (err: any) {
+      console.log('Registration Failed', registerMutation.error);
+      
+      Alert.alert('Registration Failed', err.message?.response);
+    }
+  };
+
   const showEye = () => {
     return (
       <View style={{ alignSelf: 'center', marginRight: 20 }}>
@@ -42,18 +61,12 @@ const Register = () => {
           preset="medium"
           style={{ color: app_color.charcoal_black, marginBottom: spacing.xs }}
         />
-        <ZestyTextInput placeholder="Enter Email" style={{}} />
-
-        <ZestyText
-          text="User Name"
-          preset="medium"
-          style={{
-            color: app_color.charcoal_black,
-            marginBottom: spacing.xs,
-            marginTop: spacing.md,
-          }}
+        <ZestyTextInput
+          placeholder="Enter Email"
+          value={email}
+          style={{}}
+          onChangeText={setEmail}
         />
-        <ZestyTextInput placeholder="User Name" style={{}} />
 
         <ZestyText
           text="Password"
@@ -69,6 +82,8 @@ const Register = () => {
           placeholder="Password"
           style={{}}
           RightAccessory={showEye}
+          value={password}
+          onChangeText={setPassword}
         />
       </View>
 
@@ -127,7 +142,11 @@ const Register = () => {
       </Pressable>
 
       <View style={{ marginTop: spacing.lg }}>
-        <ZestyButton ctaText="Sign In" isLoading={false} onPress={() => console.log()} />
+        <ZestyButton
+          ctaText="Sign In"
+          isLoading={registerMutation.isPending}
+          onPress={handleRegister}
+        />
       </View>
 
       <View

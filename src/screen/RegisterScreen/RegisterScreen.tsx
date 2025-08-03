@@ -1,24 +1,28 @@
-import { ScrollView, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import React from 'react';
 import Register from '../../component/Register/Register';
-import { spacing } from '../../themes/spacing';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
+import { observer } from 'mobx-react'
 
 const RegisterScreen = () => {
   const inset = useSafeAreaInsets();
   return (
-    <ScrollView style={[styles.container, { top: inset.top }]}>
+    <KeyboardAwareScrollView
+      showsVerticalScrollIndicator={false}
+      bottomOffset={62}
+      style={[styles.container, { top: inset.top }]}
+    >
       <Register />
-    </ScrollView>
+    </KeyboardAwareScrollView>
   );
 };
 
-export default RegisterScreen;
+export default observer(RegisterScreen);
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginHorizontal: 24,
-    paddingTop: spacing.lg,
   },
 });
