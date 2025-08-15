@@ -20,7 +20,7 @@
       "@component/*": ["component/*"],
       "@screen/*": ["screen/*"],
       "@store/*": ["store/*"],
-      "app_types/*": ["types/*"],
+      "@app_types/*": ["types/*"],
       "@base/*": ["base/*"],
       "@constant/*": ["constant/*"],
       "@contexts/*": ["contexts/*"],

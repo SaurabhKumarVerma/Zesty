@@ -9,9 +9,9 @@ import { BottomSheetModalRef } from '@gorhom/bottom-sheet/lib/typescript/compone
 import { SharedValue } from 'react-native-reanimated';
 import { BottomSheetScrollViewProps } from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheetScrollable/types';
 import { BottomSheetFlashListProps } from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheetScrollable/BottomSheetFlashList';
-import { EBOTTOMSHEETTYPE } from 'app_types/type';
 import { BottomSheetMethods } from '@gorhom/bottom-sheet/lib/typescript/types';
 import { app_color } from '@themes/color';
+import { EBOTTOMSHEETTYPE } from '@app_types/type';
 
 interface IZestyBottomSheetScrollViewProps extends BottomSheetScrollViewProps {
   bottomSheetScrollViewStyle?: StyleProp<View>;
