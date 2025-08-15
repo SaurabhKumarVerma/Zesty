@@ -16,11 +16,10 @@ import { EBOTTOMSHEETTYPE } from '@app_types/type';
 interface IZestyBottomSheetScrollViewProps extends BottomSheetScrollViewProps {
   bottomSheetScrollViewStyle?: StyleProp<View>;
   children: ReactNode | ReactNode[];
-  isScrollEnable?: boolean
+  isScrollEnable?: boolean;
 }
 
-interface IZestyBottomSheetFlashListProps<T>
-  extends BottomSheetFlashListProps<T> {}
+interface IZestyBottomSheetFlashListProps<T> extends BottomSheetFlashListProps<T> {}
 
 interface IZestyModalBase {
   sheetRef?: Ref<BottomSheetMethods | null>;
@@ -39,15 +38,13 @@ type IZestyModalProps<ItemType = any> =
       IZestyBottomSheetFlashListProps<ItemType>);
 
 const ZestyModal = forwardRef(
-  <ItemType,>(
-    props: IZestyModalProps<ItemType>,
-    _ref: Ref<BottomSheetModalRef>,
-  ) => {
+  <ItemType,>(props: IZestyModalProps<ItemType>, _ref: Ref<BottomSheetModalRef>) => {
     const snapPoints = useMemo(() => ['6%', '40%'], []);
     const { sheetRef, userSnapPoints, onClose, type, ...rest } = props;
 
     return (
       <BottomSheet
+        handleIndicatorStyle={styles.indicatorColor}
         ref={sheetRef}
         onClose={onClose}
         snapPoints={userSnapPoints || snapPoints}
@@ -57,12 +54,7 @@ const ZestyModal = forwardRef(
         enableOverDrag
         backgroundStyle={{ backgroundColor: app_color.bone_white }}
         backdropComponent={(props) => (
-          <BottomSheetBackdrop
-            {...props}
-            appearsOnIndex={0}
-            disappearsOnIndex={-1}
-            opacity={0.6}
-          />
+          <BottomSheetBackdrop {...props} appearsOnIndex={0} disappearsOnIndex={-1} opacity={0.6} />
         )}
       >
         {type === EBOTTOMSHEETTYPE.BOTTOM_SHEET_SCROLL_VIEW ? (
@@ -74,9 +66,7 @@ const ZestyModal = forwardRef(
             {(rest as IZestyBottomSheetScrollViewProps).children}
           </BottomSheetScrollView>
         ) : (
-          <BottomSheetFlashList
-            {...(rest as IZestyBottomSheetFlashListProps<ItemType>)}
-          />
+          <BottomSheetFlashList {...(rest as IZestyBottomSheetFlashListProps<ItemType>)} />
         )}
       </BottomSheet>
     );
@@ -85,4 +75,6 @@ const ZestyModal = forwardRef(
 
 export default ZestyModal;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  indicatorColor: { backgroundColor: app_color.soft_gray, width: '14%', height: 6 },
+});

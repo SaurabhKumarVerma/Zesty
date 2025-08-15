@@ -4,11 +4,12 @@ import Login from '../../component/Login/Login';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { spacing } from '../../themes/spacing';
 import ZestyModal from '@base/ZestyModal/ZestyModal';
-import { EBOTTOMSHEETTYPE } from 'app_types/type';
+import { EBOTTOMSHEETTYPE } from '@app_types/type';
 import { ZestyText } from '@base/ZestyText/ZestyText';
 import { BottomSheetMethods } from '@gorhom/bottom-sheet/lib/typescript/types';
 import { observer } from "mobx-react";
 import { useRootStore } from '@contexts/RootStoreContext';
+import ZestyChip from '@base/ZestyChip/ZestyChip';
 
 const LoginScreen = () => {
   const inset = useSafeAreaInsets();
@@ -33,7 +34,9 @@ const LoginScreen = () => {
   return (
     <>
       <ScrollView style={[styles.container, { top: inset.top }]}>
-        <Login handleExpand={handleExpand} />
+        {/* <Login handleExpand={handleExpand} /> */}
+
+        <ZestyChip />
       </ScrollView>
 
     {
@@ -47,6 +50,8 @@ const LoginScreen = () => {
       />
       ) : null
     }
+
+
       
     </>
   );
