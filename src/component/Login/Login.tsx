@@ -10,9 +10,11 @@ import ZestyButton from '@base/ZestyButton/ZestyButton';
 import { ESCREEN_NAME } from '@navigation/NavigationTypes/screenName';
 import { replace } from '@navigation/RootNavigation';
 
-const Login = () => {
-  
+interface ILOGIN {
+  handleExpand: () => void;
+}
 
+const Login = (props: ILOGIN) => {
   const showEye = () => {
     return (
       <View style={{ alignSelf: 'center', marginRight: 20 }}>
@@ -22,8 +24,8 @@ const Login = () => {
   };
 
   const navigateToRegister = () => {
-    replace(ESCREEN_NAME.REGISTER_SCREEN)
-  }
+    replace(ESCREEN_NAME.REGISTER_SCREEN);
+  };
 
   return (
     <View style={{}}>
@@ -59,11 +61,13 @@ const Login = () => {
         />
       </View>
 
-      <ZestyText
-        text="Forgot password?"
-        preset="medium"
-        style={{ color: app_color.sunset_orange, marginTop: spacing.lg, textAlign: 'right' }}
-      />
+      <Pressable onPress={props.handleExpand} hitSlop={{top: 10, bottom: 10, }}>
+        <ZestyText
+          text="Forgot password?"
+          preset="medium"
+          style={{ color: app_color.sunset_orange, marginTop: spacing.lg, textAlign: 'right' }}
+        />
+      </Pressable>
 
       <View style={{ marginTop: spacing.lg }}>
         <ZestyButton ctaText="Sign In" isLoading={false} onPress={() => console.log()} />

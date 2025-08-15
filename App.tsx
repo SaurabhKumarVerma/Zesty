@@ -13,10 +13,11 @@ import { RootStoreContext } from './src/contexts/RootStoreContext';
 import rootStore from './src/store/RootStore';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { NavigationContainer } from '@react-navigation/native';
-import {navigationRef} from './src/navigation/RootNavigation'
-import AuthNavigation from './src/navigation/Auth/AuthNavigation'
+import { navigationRef } from './src/navigation/RootNavigation';
+import AuthNavigation from './src/navigation/Auth/AuthNavigation';
 import Toast from 'react-native-toast-message';
-import ToastConfig from './src/base/ZestyToast/ZestyToast'
+import ToastConfig from './src/base/ZestyToast/ZestyToast';
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -88,18 +89,20 @@ export default function App() {
 
   return (
     <NavigationContainer ref={navigationRef}>
-    <RootStoreContext.Provider value={rootStore}>
-      <QueryClientProvider client={rootStore.queryClient}>
-        <GestureHandlerRootView style={styles.container}>
-          <KeyboardProvider>
-            <SafeAreaProvider onLayout={onLayoutRootView}>
-              <AuthNavigation />
-            </SafeAreaProvider>
-          </KeyboardProvider>
-        </GestureHandlerRootView>
-      </QueryClientProvider>
-    </RootStoreContext.Provider>
-    <Toast config={ToastConfig} />
+      <RootStoreContext.Provider value={rootStore}>
+        <QueryClientProvider client={rootStore.queryClient}>
+          <BottomSheetModalProvider >
+            <GestureHandlerRootView style={styles.container}>
+              <KeyboardProvider>
+                <SafeAreaProvider onLayout={onLayoutRootView}>
+                  <AuthNavigation />
+                </SafeAreaProvider>
+              </KeyboardProvider>
+            </GestureHandlerRootView>
+          </BottomSheetModalProvider>
+        </QueryClientProvider>
+      </RootStoreContext.Provider>
+      <Toast config={ToastConfig} />
     </NavigationContainer>
   );
 }
@@ -107,6 +110,5 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // marginTop: 100
   },
 });

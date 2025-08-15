@@ -28,4 +28,5 @@ export const app_color = {
   medium_neutral_gray: '#878787',
   charcoal_black: '#101010',
   medium_gray: '#878787',
+  bone_white: '#F9F7F3'
 };

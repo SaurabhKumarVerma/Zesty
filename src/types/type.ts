@@ -24,3 +24,8 @@ export interface IIcon {
   color?: string;
   style?: ViewStyle;
 }
+
+export const enum EBOTTOMSHEETTYPE {
+ BOTTOM_SHEET_SCROLL_VIEW = 'BottomSheetScrollView',
+ BOTTOM_SHEET_FLASH_LIST = 'BottomSheetFlashList'
+}
