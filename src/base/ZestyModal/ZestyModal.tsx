@@ -56,6 +56,7 @@ const ZestyModal = forwardRef(
         backdropComponent={(props) => (
           <BottomSheetBackdrop {...props} appearsOnIndex={0} disappearsOnIndex={-1} opacity={0.6} />
         )}
+        style={{paddingHorizontal: 16}}
       >
         {type === EBOTTOMSHEETTYPE.BOTTOM_SHEET_SCROLL_VIEW ? (
           <BottomSheetScrollView

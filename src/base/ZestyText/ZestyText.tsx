@@ -73,6 +73,7 @@ const $sizeStyles = {
   xxl: { fontSize: 48, lineHeight: 55 } as TextStyle,
   bold: { fontSize: 32, lineHeight: 40 } as TextStyle,
   rg: { fontSize: 17, lineHeight: 22 } as TextStyle,
+  semiBold: { fontSize: 24, lineHeight: 22 } as TextStyle,
   lg: { fontSize: 20, lineHeight: 24 } as TextStyle,
   md: { fontSize: 10, lineHeight: 12 } as TextStyle,
   sm: { fontSize: 16, lineHeight: 20 } as TextStyle,

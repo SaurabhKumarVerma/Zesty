@@ -9,17 +9,28 @@ import { spacing } from '@themes/spacing';
 import ZestyButton from '@base/ZestyButton/ZestyButton';
 import { ESCREEN_NAME } from '@navigation/NavigationTypes/screenName';
 import { replace } from '@navigation/RootNavigation';
+import { observer } from 'mobx-react';
+import { useRootStore } from '@contexts/RootStoreContext';
 
 interface ILOGIN {
   handleExpand: () => void;
 }
 
 const Login = (props: ILOGIN) => {
+  const { globalStore } = useRootStore();
+
+  const showSecureTextEntry = () => {
+    globalStore.showContent(!globalStore.isVisible);
+  };
   const showEye = () => {
     return (
-      <View style={{ alignSelf: 'center', marginRight: 20 }}>
-        <Feather name="eye-off" size={18} color="black" />
-      </View>
+      <Pressable onPress={showSecureTextEntry} style={{ alignSelf: 'center', marginRight: 20 }}>
+        <Feather
+          name={globalStore.isVisible ? 'eye-off' : 'eye'}
+          size={18}
+          color="black"
+        />
+      </Pressable>
     );
   };
 
@@ -54,14 +65,14 @@ const Login = (props: ILOGIN) => {
           }}
         />
         <ZestyTextInput
-          secureTextEntry
+          secureTextEntry={globalStore.isVisible}
           placeholder="Password"
           style={{}}
           RightAccessory={showEye}
         />
       </View>
 
-      <Pressable onPress={props.handleExpand} hitSlop={{top: 10, bottom: 10, }}>
+      <Pressable onPress={props.handleExpand} hitSlop={{ top: 10, bottom: 10 }}>
         <ZestyText
           text="Forgot password?"
           preset="medium"
@@ -114,7 +125,7 @@ const Login = (props: ILOGIN) => {
   );
 };
 
-export default Login;
+export default observer(Login);
 
 const styles = StyleSheet.create({
   horizontalStyle: {
