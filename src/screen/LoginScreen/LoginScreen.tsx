@@ -33,7 +33,7 @@ const LoginScreen = () => {
     }
   }, []);
 
-  const snapPoints = useMemo(() => ['6%', '42%'], []);
+  const snapPoints = useMemo(() => ['6%', '46%'], []);
 
   const renderRightIcon = () => {
     return (
@@ -126,11 +126,11 @@ const LoginScreen = () => {
           extraData={selectedId}
         />
 
-        <View style={{ marginTop: 8, marginBottom: 24 }}>
+        <View style={{ marginTop: 8, bottom: '2%' }}>
           <ZestyButton
             ctaText="Continue"
             isLoading={false}
-            onPress={() => continueToForgotScreen('Clicked')}
+            onPress={() => continueToForgotScreen()}
           />
         </View>
       </View>

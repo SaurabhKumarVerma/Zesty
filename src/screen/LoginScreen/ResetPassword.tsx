@@ -19,7 +19,7 @@ import { useRootStore } from '@contexts/RootStoreContext';
 
 const ResetPassword = () => {
   const inset = useSafeAreaInsets();
-  const snapPoints = useMemo(() => ['6%', '46%'], []);
+  const snapPoints = useMemo(() => ['6%', '48%'], []);
   const sheetRef = useRef<BottomSheetMethods | null>(null);
   const { userStore } = useRootStore();
 
@@ -63,7 +63,7 @@ const ResetPassword = () => {
           />
         </View>
 
-        <View style={{ top: 24 }}>
+        <View style={{ top: 24, marginBottom: '8%' }}>
           <ZestyButton ctaText="Continue" isLoading={false} onPress={() => console.log('Forgot')} />
         </View>
       </View>
@@ -77,7 +77,7 @@ const ResetPassword = () => {
   return (
     <>
       <View style={{ top: inset.top + 10, marginHorizontal: 24, flex: 1 }}>
-        <ZestyHeader headerText={'OTP'} />
+        <ZestyHeader headerText={'Reset Password'} />
         <ZestyText text="Reset Password" preset="semiBold" size="bold" style={{ marginTop: 8 }} />
 
         <View style={{}}>
