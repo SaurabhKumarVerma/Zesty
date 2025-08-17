@@ -1,21 +1,22 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React, { ReactElement, ReactNode } from 'react';
-import ZestyImage from '@base/ZestyImage/ZestyImage';
-import { app_images } from '../../../assets';
+import { StyleSheet, View } from 'react-native';
+import React, { ReactNode } from 'react';
 import { app_color } from '@themes/color';
 import { ZestyText } from '@base/ZestyText/ZestyText';
-import Entypo from '@expo/vector-icons/Entypo';
+
+type ColorKey = Exclude<keyof typeof app_color, 'app_gradient_color'>;
+type SolidColorValue = (typeof app_color)[ColorKey];
 
 interface IZestyChip {
   rightAccessory?: ReactNode;
   leftAccessory?: ReactNode;
   topText?: string
   bottomText?: string
+  borderColor?: SolidColorValue
 }
 
 const ZestyChip = (props: IZestyChip) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {borderColor:props.borderColor ?? app_color.medium_gray,}]}>
       
 
       <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
@@ -47,7 +48,6 @@ const styles = StyleSheet.create({
   container: {
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: '#878787',
     justifyContent: 'space-between',
     flexDirection: 'row',
     alignItems: 'center',

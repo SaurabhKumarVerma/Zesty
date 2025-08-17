@@ -1,5 +1,5 @@
-import { ScrollView, StyleSheet, View } from 'react-native';
-import React, { useCallback, useMemo, useRef } from 'react';
+import { Linking, Pressable, ScrollView, StyleSheet, View } from 'react-native';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import Login from '../../component/Login/Login';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { spacing } from '../../themes/spacing';
@@ -11,15 +11,20 @@ import { observer } from 'mobx-react';
 import { useRootStore } from '@contexts/RootStoreContext';
 import ZestyChip from '@base/ZestyChip/ZestyChip';
 import { app_color } from '@themes/color';
-import { app_images } from '../../../assets';
 import { Entypo } from '@expo/vector-icons';
 import ZestyImage from '@base/ZestyImage/ZestyImage';
 import ZestyButton from '@base/ZestyButton/ZestyButton';
+import ZestyList from '@base/ZestyList/ZestyList';
+import { forgotData } from './forgotJsonData';
+import { useNavigation } from '@react-navigation/native';
+import { ESCREEN_NAME } from '@navigation/NavigationTypes/screenName';
 
 const LoginScreen = () => {
   const inset = useSafeAreaInsets();
   const sheetRef = useRef<BottomSheetMethods | null>(null);
   const { userStore } = useRootStore();
+  const [selectedId, setSelectedId] = useState<string | number | null>(null);
+  const navigation = useNavigation();
 
   const handleExpand = useCallback(() => {
     if (!userStore.isForgotModelVisible) {
@@ -27,7 +32,6 @@ const LoginScreen = () => {
       sheetRef.current?.expand();
     }
   }, []);
-
 
   const snapPoints = useMemo(() => ['6%', '42%'], []);
 
@@ -39,23 +43,65 @@ const LoginScreen = () => {
     );
   };
 
-  const renderLeftIcon = () => {
+  const openWhatsApp = (phoneNumber: string, message = '') => {
+    const formattedPhoneNumber = phoneNumber.replace(/[^0-9]/g, '');
+
+    let url = `whatsapp://send?phone=${formattedPhoneNumber}`;
+
+    if (message) {
+      const encodedMessage = encodeURIComponent(message);
+      url += `&text=${encodedMessage}`;
+    }
+
+    Linking.canOpenURL(url)
+      .then((supported) => {
+        if (supported) {
+          Linking.openURL(url);
+        } else {
+          console.log('WhatsApp is not installed on this device or the URL is invalid.');
+          // Linking.openURL(`https://wa.me/${formattedPhoneNumber}?text=${encodedMessage}`);
+        }
+      })
+      .catch((err) => console.error('An error occurred', err));
+  };
+
+  const renderLeftIcon = (iconName: string) => {
     return (
       <View style={styles.rightAccessory}>
-        <ZestyImage source={app_images.whatsapp} style={{ width: 20, height: 20 }} />
+        <ZestyImage source={iconName} style={{ width: 20, height: 20 }} />
       </View>
     );
   };
 
-  const renderMailIcon = () => {
+  const onPress = (item: any) => {
+    setSelectedId(item.id === selectedId ? null : item.id);
+  };
+
+  const renderItem = ({ item }: any) => {
+    const isSelected = item.id === selectedId;
     return (
-      <View style={styles.rightAccessory}>
-        <ZestyImage source={app_images.mail} style={{ width: 20, height: 20 }} />
-      </View>
+      <Pressable onPress={() => onPress(item)} style={{ marginBottom: spacing.md, zIndex: 1 }}>
+        <ZestyChip
+          topText={item.text1}
+          bottomText={item.text2}
+          rightAccessory={renderLeftIcon(item.image_path)}
+          leftAccessory={isSelected ? renderRightIcon() : undefined}
+          borderColor={isSelected ? app_color.sunset_orange : app_color.medium_gray}
+        />
+      </Pressable>
     );
   };
 
-  const renderComponent = () => {
+  const continueToForgotScreen = () => {
+    if (selectedId == 1) {
+      openWhatsApp('7432454343', 'Hey got OTP');
+    } else if (selectedId == 2) {
+      navigation.navigate(ESCREEN_NAME.FORGOT_PASSWORD_SCREEN);
+    }
+    sheetRef.current?.forceClose();
+  };
+
+  const renderComponent = useCallback(() => {
     return (
       <View>
         <ZestyText
@@ -71,27 +117,26 @@ const LoginScreen = () => {
           size="xs"
           style={{ marginVertical: 12, color: app_color.medium_neutral_gray }}
         />
-        <ZestyChip
-          topText="Send via WhatsApp"
-          bottomText="+12 8347 2838 28"
-          rightAccessory={renderLeftIcon()}
-          leftAccessory={renderRightIcon()}
+
+        <ZestyList
+          data={forgotData}
+          renderItem={renderItem}
+          keyExtractor={(item, index) => item.id.toString()}
+          estimatedItemSize={2}
+          extraData={selectedId}
         />
 
-        <View style={{ marginTop: spacing.md }}>
-          <ZestyChip
-            topText="Send via Email"
-            bottomText="Albertstevano@gmail.com"
-            rightAccessory={renderMailIcon()}
+        <View style={{ marginTop: 8, marginBottom: 24 }}>
+          <ZestyButton
+            ctaText="Continue"
+            isLoading={false}
+            onPress={() => continueToForgotScreen('Clicked')}
           />
-        </View>
-
-        <View style={{marginVertical:24}}>
-          <ZestyButton ctaText="Continue" isLoading={false} onPress={() => console.log('Clicked')} />
         </View>
       </View>
     );
-  };
+  }, [selectedId]);
+
   return (
     <>
       <ScrollView style={[styles.container, { top: inset.top }]}>

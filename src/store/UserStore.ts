@@ -5,14 +5,27 @@ import { LoginMutation } from 'graphql/generated/graphql';
 import { WithoutTypename } from '@utils/__typenameOmit';
 import { navigate } from '@navigation/RootNavigation';
 
+ const regex = /^\d+$/;
+
 export default class UserStore implements IAuthenticationModel {
   @observable user: WithoutTypename<LoginMutation['login']> | undefined = undefined
   @observable isForgotModelVisible: boolean = false
+  @observable otpInput: string | null = null
+  @observable isPasswordChangeSuccessFull: boolean = false
 
   constructor(private rootStore: RootStore) {
     makeAutoObservable(this);
   }
 
+  @action
+  passwordChangeStatusTrue(){
+    this.isPasswordChangeSuccessFull = true
+  }
+
+  @action
+  passwordChangeStatusFalse(){
+    this.isPasswordChangeSuccessFull = false
+  }
 
   @action
   getUserData(data: WithoutTypename<LoginMutation['login']>) {
@@ -30,6 +43,13 @@ export default class UserStore implements IAuthenticationModel {
   @action
   closeForgotModel(){
     this.isForgotModelVisible = false
+  }
+
+  @action
+  setUserOtp(otpValue: string){
+    if(regex.test(otpValue)){
+      this.otpInput = otpValue
+    }
   }
 
   onLogin(user: any) {

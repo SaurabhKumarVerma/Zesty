@@ -7,7 +7,7 @@ export const app_color = {
     '#FF2E63',
     'transparent',
     '#FF6A00',
-  ],
+  ] as const,
   primary_button: '#EF2A39',
   secondary_button: '#3C2F2F',
   white: '#FFFFFF',
@@ -28,5 +28,6 @@ export const app_color = {
   medium_neutral_gray: '#878787',
   charcoal_black: '#101010',
   medium_gray: '#878787',
-  bone_white: '#F9F7F3'
-};
+  bone_white: '#F9F7F3',
+  brightGray: '#EDEDED'
+} as const;

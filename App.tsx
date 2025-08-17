@@ -91,15 +91,15 @@ export default function App() {
     <NavigationContainer ref={navigationRef}>
       <RootStoreContext.Provider value={rootStore}>
         <QueryClientProvider client={rootStore.queryClient}>
-          <BottomSheetModalProvider >
-            <GestureHandlerRootView style={styles.container}>
-              <KeyboardProvider>
+          <KeyboardProvider>
+            <BottomSheetModalProvider>
+              <GestureHandlerRootView style={styles.container}>
                 <SafeAreaProvider onLayout={onLayoutRootView}>
                   <AuthNavigation />
                 </SafeAreaProvider>
-              </KeyboardProvider>
-            </GestureHandlerRootView>
-          </BottomSheetModalProvider>
+              </GestureHandlerRootView>
+            </BottomSheetModalProvider>
+          </KeyboardProvider>
         </QueryClientProvider>
       </RootStoreContext.Provider>
       <Toast config={ToastConfig} />
