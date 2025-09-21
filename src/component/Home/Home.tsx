@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SCREEN_WIDTH } from '@constant/screen-dimension';
 import ZestyButton from '@base/ZestyButton/ZestyButton';
+import { ClientStorage } from '@services/storage/client_strorage';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -13,6 +14,7 @@ const Home = () => {
 
   const onPress = () => {
     setIsLoading(!isLoading);
+    ClientStorage.deleteData(process.env.EXPO_PUBLIC_CLIENT_STORAGE_ACCESS_TOKEN)
   };
   return (
     <View style={{ flex: 1, justifyContent: 'center' }}>

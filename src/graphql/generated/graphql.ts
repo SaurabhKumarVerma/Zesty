@@ -31,6 +31,7 @@ export type AllCategoryOutput = {
   __typename?: 'AllCategoryOutput';
   categories?: Maybe<Array<Category>>;
   error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
 };
 
@@ -41,6 +42,7 @@ export type AllRestaurantsInput = {
 export type AllRestaurantsOutput = {
   __typename?: 'AllRestaurantsOutput';
   error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
   results?: Maybe<Array<Restaurant>>;
   totalPages?: Maybe<Scalars['Int']['output']>;
@@ -68,6 +70,7 @@ export type CategoryOutput = {
   __typename?: 'CategoryOutput';
   category?: Maybe<Category>;
   error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
   totalPages?: Maybe<Scalars['Int']['output']>;
   totalResults?: Maybe<Scalars['Int']['output']>;
@@ -82,6 +85,7 @@ export type CreateAccountInput = {
 export type CreateAccountOutput = {
   __typename?: 'CreateAccountOutput';
   error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
 };
 
@@ -96,6 +100,7 @@ export type CreateDishInput = {
 export type CreateDishOutput = {
   __typename?: 'CreateDishOutput';
   error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
 };
 
@@ -112,6 +117,7 @@ export type CreateOrderItemInput = {
 export type CreateOrderOutput = {
   __typename?: 'CreateOrderOutput';
   error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
   orderId?: Maybe<Scalars['Int']['output']>;
 };
@@ -124,6 +130,7 @@ export type CreatePaymentInput = {
 export type CreatePaymentOutput = {
   __typename?: 'CreatePaymentOutput';
   error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
 };
 
@@ -137,6 +144,7 @@ export type CreateRestaurantInput = {
 export type CreateRestaurantOutput = {
   __typename?: 'CreateRestaurantOutput';
   error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
   restaurantId: Scalars['Int']['output'];
 };
@@ -148,6 +156,7 @@ export type DeleteDishInput = {
 export type DeleteDishOutput = {
   __typename?: 'DeleteDishOutput';
   error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
 };
 
@@ -158,6 +167,7 @@ export type DeleteRestaurentInput = {
 export type DeleteRestaurentOutput = {
   __typename?: 'DeleteRestaurentOutput';
   error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
 };
 
@@ -210,6 +220,7 @@ export type EditDishInput = {
 export type EditDishOutput = {
   __typename?: 'EditDishOutput';
   error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
 };
 
@@ -221,6 +232,7 @@ export type EditOrderInput = {
 export type EditOrderOutput = {
   __typename?: 'EditOrderOutput';
   error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
 };
 
@@ -232,6 +244,7 @@ export type EditProfileInput = {
 export type EditProfileOutput = {
   __typename?: 'EditProfileOutput';
   error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
 };
 
@@ -246,6 +259,7 @@ export type EditRestaurentInput = {
 export type EditRestaurentOutput = {
   __typename?: 'EditRestaurentOutput';
   error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
 };
 
@@ -260,6 +274,7 @@ export type FirebaseAuthOutput = {
   accessToken?: Maybe<Scalars['String']['output']>;
   error?: Maybe<Scalars['String']['output']>;
   isNewUser?: Maybe<Scalars['Boolean']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
   refreshToken?: Maybe<Scalars['String']['output']>;
 };
@@ -271,6 +286,7 @@ export type ForgotPasswordInput = {
 export type ForgotPasswordOutput = {
   __typename?: 'ForgotPasswordOutput';
   error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
 };
 
@@ -284,6 +300,7 @@ export type GetItemsOutput = {
   __typename?: 'GetItemsOutput';
   error?: Maybe<Scalars['String']['output']>;
   items?: Maybe<Array<Dish>>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
   totalPages?: Maybe<Scalars['Int']['output']>;
   totalResults?: Maybe<Scalars['Int']['output']>;
@@ -296,6 +313,7 @@ export type GetOrderInput = {
 export type GetOrderOutput = {
   __typename?: 'GetOrderOutput';
   error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
   order?: Maybe<Order>;
 };
@@ -307,6 +325,7 @@ export type GetOrdersInput = {
 export type GetOrdersOutput = {
   __typename?: 'GetOrdersOutput';
   error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
   orders?: Maybe<Array<Order>>;
 };
@@ -314,6 +333,7 @@ export type GetOrdersOutput = {
 export type GetPaymentsOutput = {
   __typename?: 'GetPaymentsOutput';
   error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
   payments?: Maybe<Array<Payment>>;
 };
@@ -329,6 +349,7 @@ export type GoogleSignInOutput = {
   accessToken?: Maybe<Scalars['String']['output']>;
   error?: Maybe<Scalars['String']['output']>;
   isNewUser?: Maybe<Scalars['Boolean']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
   refreshToken?: Maybe<Scalars['String']['output']>;
 };
@@ -354,6 +375,7 @@ export type LoginOutput = {
   __typename?: 'LoginOutput';
   accessToken?: Maybe<Scalars['String']['output']>;
   error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
   refreshToken?: Maybe<Scalars['String']['output']>;
   userId?: Maybe<Scalars['Float']['output']>;
@@ -366,6 +388,7 @@ export type LogoutInput = {
 export type LogoutOutput = {
   __typename?: 'LogoutOutput';
   error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
 };
 
@@ -395,6 +418,7 @@ export type Mutation = {
   takeOrder: TakeOrderOutput;
   updateAddress: UpdateUserAddressOutput;
   verifyEmail: VerifyEmailOutput;
+  verifyResetToken: VerifyResetTokenOutput;
 };
 
 
@@ -512,6 +536,11 @@ export type MutationVerifyEmailArgs = {
   input: VerifyEmailInput;
 };
 
+
+export type MutationVerifyResetTokenArgs = {
+  input: VerifyResetTokenInput;
+};
+
 export type MyRestaurantInput = {
   id: Scalars['Float']['input'];
 };
@@ -519,6 +548,7 @@ export type MyRestaurantInput = {
 export type MyRestaurantOutput = {
   __typename?: 'MyRestaurantOutput';
   error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
   restaurant?: Maybe<Restaurant>;
 };
@@ -526,6 +556,7 @@ export type MyRestaurantOutput = {
 export type MyRestaurantsOutput = {
   __typename?: 'MyRestaurantsOutput';
   error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
   restaurants: Array<Restaurant>;
 };
@@ -599,6 +630,7 @@ export type PhoneLoginOutput = {
   emailRequired?: Maybe<Scalars['Boolean']['output']>;
   error?: Maybe<Scalars['String']['output']>;
   isNewUser?: Maybe<Scalars['Boolean']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
   refreshToken?: Maybe<Scalars['String']['output']>;
 };
@@ -673,18 +705,20 @@ export type RefreshTokenOutput = {
   __typename?: 'RefreshTokenOutput';
   accessToken?: Maybe<Scalars['String']['output']>;
   error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
   refreshToken?: Maybe<Scalars['String']['output']>;
 };
 
 export type ResetPasswordInput = {
-  code: Scalars['String']['input'];
   newPassword: Scalars['String']['input'];
+  token: Scalars['String']['input'];
 };
 
 export type ResetPasswordOutput = {
   __typename?: 'ResetPasswordOutput';
   error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
 };
 
@@ -718,6 +752,7 @@ export type RestaurantInput = {
 export type RestaurantOutput = {
   __typename?: 'RestaurantOutput';
   error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
   restaurant?: Maybe<Restaurant>;
 };
@@ -730,6 +765,7 @@ export type SearchRestaurantInput = {
 export type SearchRestaurantOutput = {
   __typename?: 'SearchRestaurantOutput';
   error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
   restaurants: Array<Restaurant>;
   totalPages?: Maybe<Scalars['Int']['output']>;
@@ -755,6 +791,7 @@ export type TakeOrderInput = {
 export type TakeOrderOutput = {
   __typename?: 'TakeOrderOutput';
   error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
 };
 
@@ -798,6 +835,7 @@ export type User = {
 export type UserProfileOutput = {
   __typename?: 'UserProfileOutput';
   error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
   user?: Maybe<User>;
 };
@@ -815,8 +853,27 @@ export type VerifyEmailInput = {
 export type VerifyEmailOutput = {
   __typename?: 'VerifyEmailOutput';
   error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
 };
+
+export type VerifyResetTokenInput = {
+  token: Scalars['String']['input'];
+};
+
+export type VerifyResetTokenOutput = {
+  __typename?: 'VerifyResetTokenOutput';
+  error?: Maybe<Scalars['String']['output']>;
+  message?: Maybe<Scalars['String']['output']>;
+  ok: Scalars['Boolean']['output'];
+};
+
+export type ForgotPasswordMutationVariables = Exact<{
+  emailInput: ForgotPasswordInput;
+}>;
+
+
+export type ForgotPasswordMutation = { __typename?: 'Mutation', forgotPassword: { __typename?: 'ForgotPasswordOutput', ok: boolean, error?: string | null, message?: string | null } };
 
 export type LoginMutationVariables = Exact<{
   input: LoginInput;
@@ -824,6 +881,13 @@ export type LoginMutationVariables = Exact<{
 
 
 export type LoginMutation = { __typename?: 'Mutation', login: { __typename?: 'LoginOutput', ok: boolean, error?: string | null, accessToken?: string | null, refreshToken?: string | null, userId?: number | null } };
+
+export type ResetPasswordMutationVariables = Exact<{
+  input: ResetPasswordInput;
+}>;
+
+
+export type ResetPasswordMutation = { __typename?: 'Mutation', resetPassword: { __typename?: 'ResetPasswordOutput', ok: boolean, error?: string | null, message?: string | null } };
 
 export type CreateAccountMutationVariables = Exact<{
   input: CreateAccountInput;
@@ -833,5 +897,7 @@ export type CreateAccountMutationVariables = Exact<{
 export type CreateAccountMutation = { __typename?: 'Mutation', createAccount: { __typename?: 'CreateAccountOutput', ok: boolean, error?: string | null } };
 
 
+export const ForgotPasswordDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"ForgotPassword"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"emailInput"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ForgotPasswordInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"forgotPassword"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"emailInput"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ok"}},{"kind":"Field","name":{"kind":"Name","value":"error"}},{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]} as unknown as DocumentNode<ForgotPasswordMutation, ForgotPasswordMutationVariables>;
 export const LoginDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"Login"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"LoginInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"login"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ok"}},{"kind":"Field","name":{"kind":"Name","value":"error"}},{"kind":"Field","name":{"kind":"Name","value":"accessToken"}},{"kind":"Field","name":{"kind":"Name","value":"refreshToken"}},{"kind":"Field","name":{"kind":"Name","value":"userId"}}]}}]}}]} as unknown as DocumentNode<LoginMutation, LoginMutationVariables>;
+export const ResetPasswordDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"ResetPassword"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ResetPasswordInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"resetPassword"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ok"}},{"kind":"Field","name":{"kind":"Name","value":"error"}},{"kind":"Field","name":{"kind":"Name","value":"message"}}]}}]}}]} as unknown as DocumentNode<ResetPasswordMutation, ResetPasswordMutationVariables>;
 export const CreateAccountDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"CreateAccount"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"CreateAccountInput"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"createAccount"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ok"}},{"kind":"Field","name":{"kind":"Name","value":"error"}}]}}]}}]} as unknown as DocumentNode<CreateAccountMutation, CreateAccountMutationVariables>;

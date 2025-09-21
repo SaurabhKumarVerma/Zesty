@@ -73,7 +73,13 @@ const Login = (props: ILOGIN) => {
         }
         globalStore.setUserDetails(result?.login?.accessToken, result?.login?.refreshToken, result?.login?.userId)
         // replace(ESCREEN_NAME.HOME_TAB);
-      }
+      }else {
+              Toast.show({
+                position: 'bottom',
+                type: 'error',
+                props: result.login.error || 'Unknown error',
+              });
+            }
     } catch (error) {
       Toast.show({
         position: 'bottom',
@@ -140,7 +146,7 @@ const Login = (props: ILOGIN) => {
         <ZestyButton ctaText="Sign In" isLoading={loginMutation.isPending} onPress={handleSignin} />
       </View>
 
-      <View
+      {/* <View
         style={{
           marginTop: spacing.lg,
           flexDirection: 'row',
@@ -159,7 +165,7 @@ const Login = (props: ILOGIN) => {
 
       <Pressable style={{ alignSelf: 'center', marginTop: spacing.lg }}>
         <Google style={{ width: 30, height: 30 }} />
-      </Pressable>
+      </Pressable> */}
 
       <Pressable
         style={{

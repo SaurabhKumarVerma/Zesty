@@ -49,7 +49,7 @@ const Register = () => {
     }
     try {
       const result = await registerMutation.mutateAsync({
-        input: { email, password, role: UserRole.Client },
+        input: { email: email.toLocaleLowerCase(), password, role: UserRole.Client },
       });
 
       if (result.createAccount.ok) {
@@ -140,6 +140,7 @@ const Register = () => {
           value={isChecked}
           onValueChange={setChecked}
           color={isChecked ? app_color.sunset_orange : app_color.light_gray}
+          style={{borderRadius: 2, borderWidth: 1}}
         />
         <ZestyText
           text="I Agree with"
@@ -190,7 +191,7 @@ const Register = () => {
         />
       </View>
 
-      <View
+      {/* <View
         style={{
           marginTop: spacing.lg,
           flexDirection: 'row',
@@ -209,7 +210,7 @@ const Register = () => {
 
       <Pressable style={{ alignSelf: 'center', marginTop: spacing.lg }}>
         <Google style={{ width: 30, height: 30 }} />
-      </Pressable>
+      </Pressable> */}
 
       <Pressable
         style={{
