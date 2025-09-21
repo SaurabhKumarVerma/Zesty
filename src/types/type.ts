@@ -29,3 +29,16 @@ export const enum EBOTTOMSHEETTYPE {
  BOTTOM_SHEET_SCROLL_VIEW = 'BottomSheetScrollView',
  BOTTOM_SHEET_FLASH_LIST = 'BottomSheetFlashList'
 }
+
+export interface LocationData {
+  coords: {
+    accuracy: number;
+    altitude: number;
+    altitudeAccuracy: number;
+    heading: number;
+    latitude: number;
+    longitude: number;
+    speed: number;
+  };
+  timestamp: number;
+}

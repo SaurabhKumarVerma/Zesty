@@ -45,6 +45,8 @@
     </array>
     <key>CFBundleVersion</key>
     <string>1</string>
+    <key>GMSApiKey</key>
+    <string>AIzaSyC--BNBHjL1G2d00yEp9o9chITOeCc_lI4</string>
     <key>LSApplicationQueriesSchemes</key>
     <array>
       <string>whatsapp</string>

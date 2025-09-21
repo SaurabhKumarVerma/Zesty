@@ -18,6 +18,7 @@ import AuthNavigation from './src/navigation/Auth/AuthNavigation';
 import Toast from 'react-native-toast-message';
 import ToastConfig from './src/base/ZestyToast/ZestyToast';
 import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
+import MainNavigator from './src/navigation/Auth/MainNavigator'
 
 SplashScreen.preventAutoHideAsync();
 
@@ -95,7 +96,7 @@ export default function App() {
             <BottomSheetModalProvider>
               <GestureHandlerRootView style={styles.container}>
                 <SafeAreaProvider onLayout={onLayoutRootView}>
-                  <AuthNavigation />
+                  <MainNavigator />
                 </SafeAreaProvider>
               </GestureHandlerRootView>
             </BottomSheetModalProvider>

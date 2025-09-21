@@ -6,5 +6,7 @@ export enum ESCREEN_NAME {
     ONBOARDING_SCREEN = 'onboarding_screen',
     FORGOT_PASSWORD_SCREEN = 'forgot_screen',
     OTP_SCREEN = 'opt_screen',
-    RESET_PASSWORD_SCREEN = 'reset_screen'
+    RESET_PASSWORD_SCREEN = 'reset_screen',
+    DELIVERY_SCREEN = 'delivery_screen',
+    APP_HOME = 'app_screen'
 }

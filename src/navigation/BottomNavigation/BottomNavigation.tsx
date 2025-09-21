@@ -10,7 +10,6 @@ import StackNavigation from '@navigation/StackNavigation/StackNavigation';
 const Tab = createNativeBottomTabNavigator();
 const BottomNavigation = () => {
   return (
-    <NavigationContainer>
       <Tab.Navigator>
         <Tab.Screen
           name={ESCREEN_NAME.HOME_TAB}
@@ -27,7 +26,6 @@ const BottomNavigation = () => {
           }}
         />
       </Tab.Navigator>
-    </NavigationContainer>
   );
 };
 

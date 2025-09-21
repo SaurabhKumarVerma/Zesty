@@ -109,7 +109,7 @@ export const ZestyTextInput = forwardRef(function TextField(
         <ZestyText preset="formLabel" text={label} {...LabelTextProps} style={$labelStyles} />
       )}
 
-      <View style={$inputWrapperStyles}>
+      <View style={[$inputWrapperStyles, {backgroundColor: app_color.bone_white}]}>
         {!!LeftAccessory && (
           <LeftAccessory
             style={$leftAccessoryStyle}

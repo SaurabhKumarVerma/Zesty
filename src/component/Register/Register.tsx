@@ -1,5 +1,5 @@
 import { ActivityIndicator, Alert, Pressable, StyleSheet, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ZestyText } from '../../base/ZestyText/ZestyText';
 import { app_color } from '../../themes/color';
 import { ZestyTextInput } from '../../base/ZestyTextInput/ZestyTextInput';
@@ -13,6 +13,8 @@ import { UserRole } from 'graphql/generated/graphql';
 import { ESCREEN_NAME } from '@navigation/NavigationTypes/screenName';
 import { replace } from '@navigation/RootNavigation';
 import Toast from 'react-native-toast-message';
+import { useRootStore } from '@contexts/RootStoreContext';
+import { observer } from 'mobx-react';
 
 const offset = { closed: 0, opened: 20 };
 
@@ -20,6 +22,8 @@ const Register = () => {
   const [isChecked, setChecked] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { globalStore } = useRootStore();
+
 
   const registerMutation = useRegisterMutation();
 
@@ -27,16 +31,22 @@ const Register = () => {
     replace(ESCREEN_NAME.LOGIN_SCREEN);
   };
 
-  const handleRegister = async () => {
-    // if (!email.length || !password.length) {
-    //   Toast.show({
-    //     position: 'bottom',
-    //     type: 'error',
-    //     props: 'Enter Email or Password',
-    //   });
+  useEffect(() => {
+   return () => {
+     globalStore.showContent(true);
+   }
+  },[])
 
-    //   return;
-    // }
+  const handleRegister = async () => {
+    if (!email.length || !password.length) {
+      Toast.show({
+        position: 'bottom',
+        type: 'error',
+        props: 'Enter Email or Password',
+      });
+
+      return;
+    }
     try {
       const result = await registerMutation.mutateAsync({
         input: { email, password, role: UserRole.Client },
@@ -60,11 +70,20 @@ const Register = () => {
     }
   };
 
+
+  const showSecureTextEntry = () => {
+    globalStore.showContent(!globalStore.isVisible);
+  };
+
   const showEye = () => {
     return (
-      <View style={{ alignSelf: 'center', marginRight: 20 }}>
-        <Feather name="eye-off" size={18} color="black" />
-      </View>
+      <Pressable onPress={showSecureTextEntry} style={{ alignSelf: 'center', marginRight: 20 }}>
+        <Feather
+          name={globalStore.isVisible ? 'eye-off' : 'eye'}
+          size={18}
+          color="black"
+        />
+      </Pressable>
     );
   };
   const offset = { closed: 0, opened: 20 };
@@ -100,7 +119,7 @@ const Register = () => {
           }}
         />
         <ZestyTextInput
-          secureTextEntry
+          secureTextEntry={globalStore.isVisible}
           placeholder="Password"
           style={{}}
           RightAccessory={showEye}
@@ -212,7 +231,7 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default observer(Register);
 
 const styles = StyleSheet.create({
   horizontalStyle: {

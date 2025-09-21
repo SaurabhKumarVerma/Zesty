@@ -163,6 +163,7 @@ export type DeleteRestaurentOutput = {
 
 export type Dish = {
   __typename?: 'Dish';
+  category?: Maybe<Scalars['String']['output']>;
   createdAt: Scalars['DateTime']['output'];
   description: Scalars['String']['output'];
   id: Scalars['Float']['output'];
@@ -263,6 +264,31 @@ export type FirebaseAuthOutput = {
   refreshToken?: Maybe<Scalars['String']['output']>;
 };
 
+export type ForgotPasswordInput = {
+  email: Scalars['String']['input'];
+};
+
+export type ForgotPasswordOutput = {
+  __typename?: 'ForgotPasswordOutput';
+  error?: Maybe<Scalars['String']['output']>;
+  ok: Scalars['Boolean']['output'];
+};
+
+export type GetItemsInput = {
+  category?: InputMaybe<ItemCategory>;
+  limit?: InputMaybe<Scalars['Float']['input']>;
+  page?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type GetItemsOutput = {
+  __typename?: 'GetItemsOutput';
+  error?: Maybe<Scalars['String']['output']>;
+  items?: Maybe<Array<Dish>>;
+  ok: Scalars['Boolean']['output'];
+  totalPages?: Maybe<Scalars['Int']['output']>;
+  totalResults?: Maybe<Scalars['Int']['output']>;
+};
+
 export type GetOrderInput = {
   id: Scalars['Float']['input'];
 };
@@ -307,6 +333,18 @@ export type GoogleSignInOutput = {
   refreshToken?: Maybe<Scalars['String']['output']>;
 };
 
+/** Available item categories */
+export enum ItemCategory {
+  Appetizer = 'APPETIZER',
+  Burger = 'BURGER',
+  Dessert = 'DESSERT',
+  Drink = 'DRINK',
+  MainCourse = 'MAIN_COURSE',
+  Pizza = 'PIZZA',
+  Salad = 'SALAD',
+  SideDish = 'SIDE_DISH'
+}
+
 export type LoginInput = {
   email?: InputMaybe<Scalars['String']['input']>;
   password?: InputMaybe<Scalars['String']['input']>;
@@ -346,12 +384,14 @@ export type Mutation = {
   editProfile: EditProfileOutput;
   editRestaurant: EditRestaurentOutput;
   firebaseAuth: FirebaseAuthOutput;
+  forgotPassword: ForgotPasswordOutput;
   googleSignIn: GoogleSignInOutput;
   login: LoginOutput;
   logout: LogoutOutput;
   logoutAll: LogoutOutput;
   phoneLogin: PhoneLoginOutput;
   refreshToken: RefreshTokenOutput;
+  resetPassword: ResetPasswordOutput;
   takeOrder: TakeOrderOutput;
   updateAddress: UpdateUserAddressOutput;
   verifyEmail: VerifyEmailOutput;
@@ -423,6 +463,11 @@ export type MutationFirebaseAuthArgs = {
 };
 
 
+export type MutationForgotPasswordArgs = {
+  input: ForgotPasswordInput;
+};
+
+
 export type MutationGoogleSignInArgs = {
   input: GoogleSignInInput;
 };
@@ -445,6 +490,11 @@ export type MutationPhoneLoginArgs = {
 
 export type MutationRefreshTokenArgs = {
   input: RefreshTokenInput;
+};
+
+
+export type MutationResetPasswordArgs = {
+  input: ResetPasswordInput;
 };
 
 
@@ -557,6 +607,7 @@ export type Query = {
   __typename?: 'Query';
   allCategories: AllCategoryOutput;
   category: CategoryOutput;
+  getItems: GetItemsOutput;
   getOrder: GetOrderOutput;
   getOrders: GetOrdersOutput;
   getPayments: GetPaymentsOutput;
@@ -572,6 +623,11 @@ export type Query = {
 
 export type QueryCategoryArgs = {
   input: CategoryInput;
+};
+
+
+export type QueryGetItemsArgs = {
+  input: GetItemsInput;
 };
 
 
@@ -619,6 +675,17 @@ export type RefreshTokenOutput = {
   error?: Maybe<Scalars['String']['output']>;
   ok: Scalars['Boolean']['output'];
   refreshToken?: Maybe<Scalars['String']['output']>;
+};
+
+export type ResetPasswordInput = {
+  code: Scalars['String']['input'];
+  newPassword: Scalars['String']['input'];
+};
+
+export type ResetPasswordOutput = {
+  __typename?: 'ResetPasswordOutput';
+  error?: Maybe<Scalars['String']['output']>;
+  ok: Scalars['Boolean']['output'];
 };
 
 export type Restaurant = {

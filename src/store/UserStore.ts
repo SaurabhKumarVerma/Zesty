@@ -4,6 +4,9 @@ import { RootStore } from './RootStore';
 import { LoginMutation } from 'graphql/generated/graphql';
 import { WithoutTypename } from '@utils/__typenameOmit';
 import { navigate } from '@navigation/RootNavigation';
+import * as Location from 'expo-location';
+import { LocationData } from '@app_types/type';
+
 
  const regex = /^\d+$/;
 
@@ -12,6 +15,10 @@ export default class UserStore implements IAuthenticationModel {
   @observable isForgotModelVisible: boolean = false
   @observable otpInput: string | null = null
   @observable isPasswordChangeSuccessFull: boolean = false
+  @observable userCurrentLocation:Location.LocationObject | null = null
+  @observable userCurrentPosition:LocationData | null = null
+  @observable userEmail: string | undefined = undefined 
+  @observable userPassword: string | undefined = undefined
 
   constructor(private rootStore: RootStore) {
     makeAutoObservable(this);
@@ -36,6 +43,11 @@ export default class UserStore implements IAuthenticationModel {
   }
 
   @action
+  getUserLocation(locationData: Location.LocationObject){
+    this.userCurrentLocation = locationData
+  }
+
+  @action
   openForgotModel(){
     this.isForgotModelVisible = true
   }
@@ -43,6 +55,21 @@ export default class UserStore implements IAuthenticationModel {
   @action
   closeForgotModel(){
     this.isForgotModelVisible = false
+  }
+
+  @action
+  getUserCurrentLocation(locationData: LocationData){
+    this.userCurrentPosition = locationData
+  }
+  
+  @action
+  setUserEmail(email: string) {
+    this.userEmail = email
+  }
+
+  @action
+  setUserPassword(password: string){
+    this.userPassword = password
   }
 
   @action

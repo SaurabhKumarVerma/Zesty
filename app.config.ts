@@ -1,0 +1,95 @@
+import { ExpoConfig, ConfigContext } from "@expo/config";
+
+export default ({ config }: ConfigContext): ExpoConfig => ({
+  ...config,
+  name: "Zesty",
+  slug: "Zesty",
+  version: "1.0.0",
+  orientation: "portrait",
+  icon: "./assets/icon.png",
+  userInterfaceStyle: "light",
+  newArchEnabled: true,
+  splash: {
+    image: "./assets/splash-icon.png",
+    resizeMode: "contain",
+    backgroundColor: "#ffffff",
+  },
+  ios: {
+    supportsTablet: true,
+    bundleIdentifier: "com.saurabh7071.Zesty",
+    googleServicesFile: "./GoogleService-Info.plist",
+    infoPlist: {
+      LSApplicationQueriesSchemes: ["whatsapp"],
+    },
+    config: {
+      googleMapsApiKey: process.env.EXPO_PUBLIC_GOOGLE_MAPS_API_KEY || "",
+    },
+  },
+  android: {
+    adaptiveIcon: {
+      foregroundImage: "./assets/adaptive-icon.png",
+      backgroundColor: "#ffffff",
+    },
+    edgeToEdgeEnabled: true,
+    package: "com.saurabh7071.Zesty",
+    googleServicesFile: "./google-services.json",
+    config: {
+      googleMaps: {
+        apiKey: process.env.EXPO_PUBLIC_GOOGLE_MAPS_API_KEY || "",
+      },
+    },
+  },
+  plugins: [
+    "react-native-bottom-tabs",
+    "@react-native-firebase/app",
+    [
+      "expo-dev-client",
+      {
+        launchMode: "most-recent",
+      },
+    ],
+    [
+      "react-native-edge-to-edge",
+      {
+        android: {
+          theme: "material3-dynamic",
+          parentTheme: "Material3",
+        },
+      },
+    ],
+    [
+      "expo-build-properties",
+      {
+        ios: {
+          useFrameworks: "static",
+        },
+        android: {
+          experimental: true,
+        },
+      },
+    ],
+    [
+      "expo-location",
+      {
+        locationAlwaysAndWhenInUsePermission:
+          "Allow $(PRODUCT_NAME) to use your location.",
+      },
+    ],
+    [
+      "expo-build-properties",
+      {
+        ios: {
+          useFrameworks: "static",
+        },
+      },
+    ],
+    // [
+    //   "react-native-maps",
+    //   {
+    //     iosGoogleMapsApiKey: process.env.EXPO_PUBLIC_GOOGLE_MAPS_API_KEY || "",
+    //     androidGoogleMapsApiKey: process.env.EXPO_PUBLIC_GOOGLE_MAPS_API_KEY || "",
+    
+    //   },
+    // ],
+  ],
+});
